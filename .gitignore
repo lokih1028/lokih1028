@@ -1,0 +1,16 @@
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Project/user-level skill configuration; never commit secrets
+.gzhxz-skills/.env
+.baoyu-skills/.env
+
+# Local dependency/cache folders
+node_modules/
+.cache/
+.DS_Store
+
+# Locally generated skill archives
+packages/*.zip
