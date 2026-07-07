@@ -1,26 +1,62 @@
-# lokih1028 · AI/Tech Signal Radar
+# gzhxz-skills
 
-> 一手信源不是终点，**能被编辑直接拿去写的选题判断**才是终点。
+[English](./README.md) | [中文](./README.zh.md)
 
-这个仓库是我的公开工作台：把 AI / 科技领域的一手信源监控、选题筛选、事实核验、视觉叙事和公众号图文交付流程整理成可复用的 workflow。
+AI/tech first-source signal radar and **gzhxz WeChat visual narrative workflow** for Claude Code, Claude Skills, and other file-capable AI agents.
 
-它不是单纯存 Claude Skills 的地方。
+> The goal is not to collect news. The goal is to turn scattered AI/tech signals into **verified, visual-first article packages that an editor can use immediately**.
 
-它更像一个 **AI/科技自媒体前置雷达 + gzhxz 公众号视觉叙述流水线**。
+## What this repository is
 
----
+This repository packages one production-oriented skill:
 
-## Download & Install
+| Skill | Purpose | Status |
+|---|---|---|
+| `gzhxz-visual-story` | AI/tech WeChat article workflow: topic discovery, source verification, visual storyboard, Chinese draft, review, and delivery | Active |
 
-核心 Skill 在这里：
+It is designed for AI/tech self-media work:
 
-```text
-.claude/skills/gzhxz-visual-story/SKILL.md
+- Track external first-hand sources.
+- Screen and score topic candidates.
+- Separate facts, heat, inference, and risk.
+- Plan evidence screenshots, mechanism diagrams, comparisons, and article visuals.
+- Deliver a structured Markdown article package for WeChat public-account publishing.
+
+## Installation
+
+### Quick Install
+
+```bash
+npx skills add lokih1028/lokih1028
 ```
 
-如果你在 GitHub 下载 ZIP 后没看到 `.claude`，通常不是文件丢了，而是因为 `.claude` 是隐藏目录。终端里用 `ls -la` 查看。
+Then trigger the skill with:
 
-### Claude Code 一键安装
+```text
+/gzhxz-visual-story
+```
+
+or:
+
+```text
+Use the gzhxz visual narrative workflow for this AI/tech topic: <url-or-topic>
+```
+
+### Register as Claude Code Plugin Marketplace
+
+Run in Claude Code:
+
+```text
+/plugin marketplace add lokih1028/lokih1028
+```
+
+Then install the plugin:
+
+```text
+/plugin install gzhxz-skills@gzhxz-skills
+```
+
+### Local Install
 
 ```bash
 git clone https://github.com/lokih1028/lokih1028.git
@@ -28,87 +64,45 @@ cd lokih1028
 bash install.sh
 ```
 
-安装后可直接在 Claude Code 里调用：
-
-```text
-/gzhxz-visual-story
-```
-
-或自然语言触发：
-
-```text
-使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
-```
-
-### 手动安装
+### Claude.ai ZIP Package
 
 ```bash
 git clone https://github.com/lokih1028/lokih1028.git
 cd lokih1028
-mkdir -p ~/.claude/skills
-cp -R .claude/skills/gzhxz-visual-story ~/.claude/skills/
+bash install.sh --package-only
 ```
 
-### Claude.ai 上传 ZIP
-
-```bash
-mkdir -p packages
-cd .claude/skills
-zip -r ../../packages/gzhxz-visual-story.zip gzhxz-visual-story
-```
-
-然后在 Claude.ai：
+Upload the generated file:
 
 ```text
-Customize > Skills > Upload
+packages/gzhxz-visual-story.zip
 ```
 
-上传 `packages/gzhxz-visual-story.zip`。
+Full guide: [docs/install.md](./docs/install.md)
 
-完整说明见：`docs/install.md`
+## Available Plugin
 
----
+This marketplace exposes a single plugin so the skill is registered once.
 
-## 这个库解决什么问题？
+| Plugin | Description | Includes |
+|---|---|---|
+| `gzhxz-skills` | Verified visual-first AI/tech article workflow | `gzhxz-visual-story` |
 
-AI 资讯太多，真正难的不是“看到新闻”，而是：
+Marketplace config:
 
-- 哪些消息值得今天写？
-- 哪些只是二手转述，不能当事实源？
-- 这个产品/论文/项目到底新在哪？
-- 能不能做成一篇有图、有证据、有冲突的公众号文章？
-- 编辑拿到之后，能不能马上开写？
-
-所以这个库的目标很简单：
-
-**把分散的 AI/科技信号，变成经过核验、分级、可视化设计后的选题弹药。**
-
----
-
-## 工作流一眼版
-
-```mermaid
-flowchart LR
-    A[External Signals<br/>官方公告 / GitHub / arXiv / HN / PH] --> B[Freshness Gate<br/>48-72h 新鲜度检查]
-    B --> C[Source Verification<br/>一手信源 / 二手热度 / 风险边界]
-    C --> D[Topic Scoring<br/>S / A / B 分级]
-    D --> E[Narrative Conflict<br/>核心冲突与读者收益]
-    E --> F[Visual Storyboard<br/>封面 / 截图 / 机制图 / 对比图]
-    F --> G[Article Package<br/>公众号图文证据稿交付包]
+```text
+.claude-plugin/marketplace.json
 ```
 
-说白了：
-
-**先判断值不值得写，再判断怎么写，最后才开始写。**
-
----
-
-## 仓库里有什么？
+## Repository Structure
 
 ```text
 .
-├── README.md
-├── install.sh
+├── .claude-plugin/
+│   └── marketplace.json
+├── skills/
+│   └── gzhxz-visual-story/
+│       └── SKILL.md
 ├── .claude/
 │   └── skills/
 │       ├── README.md
@@ -119,129 +113,99 @@ flowchart LR
 │   └── gzhxz-workflow.md
 ├── packages/
 │   └── README.md
-└── templates/
-    └── article-package.md
+├── templates/
+│   └── article-package.md
+├── CLAUDE.md
+├── install.sh
+├── package.json
+└── README.zh.md
 ```
 
-### 核心文件
+## Canonical Paths
 
-| 路径 | 用途 |
+| Path | Purpose |
 |---|---|
-| `.claude/skills/gzhxz-visual-story/SKILL.md` | Claude Skill 主文件：gzhxz 公众号视觉叙述工作流 V6.8.0 |
-| `install.sh` | Claude Code 本地一键安装脚本；本机有 `zip` 时会顺手生成 ZIP 包 |
-| `docs/install.md` | 下载、安装、打包、上传 Claude.ai 的完整说明 |
-| `packages/README.md` | 本地打包 ZIP 的说明 |
-| `.claude/skills/README.md` | Skill 索引、触发方式和适用场景 |
-| `docs/gzhxz-workflow.md` | 面向人看的工作流说明：从选题到交付的阶段拆解 |
-| `templates/article-package.md` | 公众号图文证据稿交付模板，可复制复用 |
+| `skills/gzhxz-visual-story/SKILL.md` | Canonical marketplace skill path |
+| `.claude/skills/gzhxz-visual-story/SKILL.md` | Legacy/direct-copy compatibility path |
+| `.claude-plugin/marketplace.json` | Claude Code plugin marketplace registry |
+| `docs/install.md` | Installation and packaging guide |
+| `docs/gzhxz-workflow.md` | Human-readable workflow explanation |
+| `templates/article-package.md` | Reusable article package template |
 
----
+## Workflow
 
-## 核心工作流：gzhxz Visual Story
-
-这个 Skill 用来把一个 AI/科技主题、链接、GitHub 项目、论文、产品发布或社区信号，变成一套 **可核验、可视化、可编辑接手** 的公众号文章包。
-
-它默认遵守几个硬规则：
-
-1. **选题优先来自外部一手或近一手信源**  
-   例如官方 Blog、文档、Changelog、GitHub、arXiv、Product Hunt、Hacker News、研究者/创始人公开发布等。
-
-2. **中文二手媒体不能当原始事实源**  
-   可以用来辅助判断传播热度，但不能拿来证明核心事实。
-
-3. **S 级选题必须足够新**  
-   通常需要 48–72 小时内的一手更新；老话题除非有新进展，否则不能硬装新鲜。
-
-4. **每张图都要有信息价值**  
-   截图、机制图、对比图、时间线、架构图，都必须服务于事实证明或叙事转折。
-
-5. **写作不是搬运，是判断**  
-   输出要区分事实、推测、风险和观点。
-
----
-
-## 适合怎么用？
-
-### 1. 从一个链接开始
-
-```text
-使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0，围绕这个 GitHub 项目做一篇图文证据稿：<repo-url>
+```mermaid
+flowchart LR
+    A[External Signals<br/>official blogs / GitHub / arXiv / HN / PH] --> B[Freshness Gate<br/>48-72h for S-level topics]
+    B --> C[Source Verification<br/>primary evidence / heat / risk]
+    C --> D[Topic Scoring<br/>S / A / B]
+    D --> E[Narrative Conflict<br/>reader value + tension]
+    E --> F[Visual Storyboard<br/>cover / screenshots / diagrams / comparisons]
+    F --> G[Article Package<br/>WeChat-ready Markdown delivery]
 ```
 
-### 2. 从一个热点开始
+In plain language:
+
+**Decide whether it is worth writing → verify what is true → decide how to show it visually → then write.**
+
+## Core Rules
+
+1. **External first-hand sources first**  
+   Official announcements, docs, changelogs, GitHub repos/releases/issues, arXiv papers, Product Hunt, Hacker News, and maintainer/researcher posts are preferred.
+
+2. **Chinese secondary media is not primary evidence**  
+   It can support heat and distribution context, but not core facts.
+
+3. **Freshness matters**  
+   S-level topics normally need a first-hand update within the last 48–72 hours.
+
+4. **Visuals must carry information**  
+   Screenshots, diagrams, timelines, and comparisons should prove facts, explain mechanisms, or create narrative turns.
+
+5. **Writing is judgment, not forwarding**  
+   The output must separate fact, inference, uncertainty, risk, and opinion.
+
+## Example Prompts
 
 ```text
-把这个 AI 产品发布做成公众号文章，要有信源截图、核心冲突和配图规划：<announcement-url>
+/gzhxz-visual-story https://github.com/example/project
 ```
-
-### 3. 从空白选题开始
 
 ```text
-今天跑一下公众号选题 SOP，先给 3-5 个 AI/科技候选选题，再推荐最值得写的一个。
+Use gzhxz visual narrative workflow V6.8.0 to turn this GitHub repo into a WeChat article package: <repo-url>
 ```
-
-### 4. 只做编辑前置筛选
 
 ```text
-帮我判断这个选题值不值得写：新鲜度、信源、热度、风险、可视化机会分别打分。
+Run today's AI/tech topic scan. Give me 3-5 candidates, score them, then recommend the strongest one.
 ```
 
----
+```text
+Check whether this topic is worth writing: freshness, source quality, heat, risk, and visual opportunities.
+```
 
-## 标准输出长什么样？
+## Standard Output
 
-一次完整交付通常包含：
+A full delivery usually contains:
 
-- 候选选题卡
-- 一手信源包
-- 用户声音 / 社区反馈
-- 核心冲突
-- 视觉 storyboard
-- 文章标题池
-- 正文初稿
-- 图片插入建议
-- 风险提醒
-- 编辑可直接使用的 Markdown 包
+- Candidate topic cards
+- Primary source pack
+- User voice / community feedback
+- Narrative conflict
+- Visual storyboard
+- Title pool
+- Chinese article draft
+- Image insertion plan
+- Risk notes
+- Editor-ready Markdown package
 
-更完整的模板见：`templates/article-package.md`
+## Who this is for
 
----
+- AI/tech self-media editors
+- People who need fast topic judgment
+- Writers turning AI launches into evidence-backed articles
+- Claude Skill authors looking for a concrete workflow example
+- Anyone interested in first-source monitoring, topic scoring, and visual storytelling
 
-## 我的关注方向
+## License
 
-- AI Agents / MCP / Open-source AI tooling
-- LLM 产品更新与开发者生态
-- GitHub 高动量项目
-- arXiv / 研究机构新工作
-- Product Hunt / Hacker News / 开发者社区信号
-- AI 工具从 demo 到真实可用之间的那段灰区
-
-一句话：
-
-**少搬运，多核验；少堆料，多判断。**
-
----
-
-## 适合谁看？
-
-- AI/科技自媒体编辑
-- 需要快速判断选题价值的人
-- 想把 AI 热点做成图文证据稿的人
-- 需要 Claude Skill 工作流示例的人
-- 对一手信源监控、选题分级、视觉叙事感兴趣的人
-
----
-
-## Status
-
-这个仓库会持续迭代：
-
-- 更清晰的选题评分卡
-- 更多 article package 模板
-- GitHub AI 项目发现 SOP
-- 每日 AI/科技简报模板
-- 面向编辑协作的交付格式
-
-如果你只想看核心工作流，从这里开始：
-
-👉 `.claude/skills/gzhxz-visual-story/SKILL.md`
+MIT
