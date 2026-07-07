@@ -1,0 +1,22 @@
+{
+  "name": "gzhxz-skills",
+  "owner": {
+    "name": "loki H",
+    "email": "lokih141028@gmail.com"
+  },
+  "metadata": {
+    "description": "AI/tech first-source signal radar and gzhxz WeChat visual narrative workflow",
+    "version": "6.8.0"
+  },
+  "plugins": [
+    {
+      "name": "gzhxz-skills",
+      "description": "Verified visual-first AI/tech WeChat article workflow for source discovery, scoring, storyboard, draft, review, and delivery",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/gzhxz-visual-story"
+      ]
+    }
+  ]
+}
