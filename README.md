@@ -10,6 +10,65 @@
 
 ---
 
+## Download & Install
+
+核心 Skill 在这里：
+
+```text
+.claude/skills/gzhxz-visual-story/SKILL.md
+```
+
+如果你在 GitHub 下载 ZIP 后没看到 `.claude`，通常不是文件丢了，而是因为 `.claude` 是隐藏目录。终端里用 `ls -la` 查看。
+
+### Claude Code 一键安装
+
+```bash
+git clone https://github.com/lokih1028/lokih1028.git
+cd lokih1028
+bash install.sh
+```
+
+安装后可直接在 Claude Code 里调用：
+
+```text
+/gzhxz-visual-story
+```
+
+或自然语言触发：
+
+```text
+使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
+```
+
+### 手动安装
+
+```bash
+git clone https://github.com/lokih1028/lokih1028.git
+cd lokih1028
+mkdir -p ~/.claude/skills
+cp -R .claude/skills/gzhxz-visual-story ~/.claude/skills/
+```
+
+### Claude.ai 上传 ZIP
+
+```bash
+mkdir -p packages
+cd .claude/skills
+zip -r ../../packages/gzhxz-visual-story.zip gzhxz-visual-story
+```
+
+然后在 Claude.ai：
+
+```text
+Customize > Skills > Upload
+```
+
+上传 `packages/gzhxz-visual-story.zip`。
+
+完整说明见：`docs/install.md`
+
+---
+
 ## 这个库解决什么问题？
 
 AI 资讯太多，真正难的不是“看到新闻”，而是：
@@ -49,13 +108,17 @@ flowchart LR
 ```text
 .
 ├── README.md
+├── install.sh
 ├── .claude/
 │   └── skills/
 │       ├── README.md
 │       └── gzhxz-visual-story/
 │           └── SKILL.md
 ├── docs/
+│   ├── install.md
 │   └── gzhxz-workflow.md
+├── packages/
+│   └── README.md
 └── templates/
     └── article-package.md
 ```
@@ -65,6 +128,9 @@ flowchart LR
 | 路径 | 用途 |
 |---|---|
 | `.claude/skills/gzhxz-visual-story/SKILL.md` | Claude Skill 主文件：gzhxz 公众号视觉叙述工作流 V6.8.0 |
+| `install.sh` | Claude Code 本地一键安装脚本；本机有 `zip` 时会顺手生成 ZIP 包 |
+| `docs/install.md` | 下载、安装、打包、上传 Claude.ai 的完整说明 |
+| `packages/README.md` | 本地打包 ZIP 的说明 |
 | `.claude/skills/README.md` | Skill 索引、触发方式和适用场景 |
 | `docs/gzhxz-workflow.md` | 面向人看的工作流说明：从选题到交付的阶段拆解 |
 | `templates/article-package.md` | 公众号图文证据稿交付模板，可复制复用 |
