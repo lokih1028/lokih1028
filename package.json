@@ -1,0 +1,19 @@
+{
+  "name": "gzhxz-skills",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "description": "AI/tech first-source signal radar and gzhxz WeChat visual narrative workflow",
+  "keywords": [
+    "agent-skills",
+    "claude-skills",
+    "gzhxz",
+    "wechat",
+    "ai-media",
+    "visual-storytelling"
+  ],
+  "scripts": {
+    "package:skill": "bash install.sh --package-only",
+    "install:skill": "bash install.sh"
+  }
+}
