@@ -2,17 +2,62 @@
 
 这个文档说明如何下载、安装和打包 `gzhxz-visual-story` Claude Skill。
 
-核心 Skill 文件在：
+本仓库现在按 `baoyu-skills` 风格配置为 Claude Code plugin marketplace：
 
 ```text
-.claude/skills/gzhxz-visual-story/SKILL.md
+.claude-plugin/marketplace.json
+skills/gzhxz-visual-story/SKILL.md
 ```
 
-如果你在文件管理器里没看到 `.claude`，通常不是仓库缺文件，而是因为 `.claude` 是隐藏目录。
+其中 `skills/gzhxz-visual-story/` 是 marketplace 的规范路径。
+
+`.claude/skills/gzhxz-visual-story/` 仍然保留，作为手动复制和历史兼容路径。
 
 ---
 
-## 方式一：Claude Code 本地安装
+## 方式一：npx 快速安装（推荐）
+
+```bash
+npx skills add lokih1028/lokih1028
+```
+
+安装后在支持 Skill 的 Agent 中触发：
+
+```text
+/gzhxz-visual-story
+```
+
+或自然语言触发：
+
+```text
+使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
+```
+
+---
+
+## 方式二：Claude Code Plugin Marketplace
+
+在 Claude Code 中注册 marketplace：
+
+```text
+/plugin marketplace add lokih1028/lokih1028
+```
+
+然后安装插件：
+
+```text
+/plugin install gzhxz-skills@gzhxz-skills
+```
+
+这个 marketplace 目前暴露一个插件：
+
+| Plugin | Includes |
+|---|---|
+| `gzhxz-skills` | `gzhxz-visual-story` |
+
+---
+
+## 方式三：Clone 后本地安装
 
 ### 1. Clone 仓库
 
@@ -27,49 +72,26 @@ cd lokih1028
 bash install.sh
 ```
 
-安装后目录应该是：
+脚本会把 Skill 安装到：
 
 ```text
 ~/.claude/skills/gzhxz-visual-story/SKILL.md
 ```
 
-### 3. 在 Claude Code 中触发
+如果本机有 `zip` 命令，还会生成：
 
 ```text
-/gzhxz-visual-story
-```
-
-也可以用自然语言触发：
-
-```text
-使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
+packages/gzhxz-visual-story.zip
 ```
 
 ---
 
-## 方式二：手动复制
+## 方式四：只生成 Claude.ai ZIP
 
 ```bash
-mkdir -p ~/.claude/skills
-cp -R .claude/skills/gzhxz-visual-story ~/.claude/skills/
-```
-
-检查：
-
-```bash
-ls -la ~/.claude/skills/gzhxz-visual-story
-```
-
----
-
-## 方式三：打包 ZIP 上传到 Claude.ai
-
-在仓库根目录执行：
-
-```bash
-mkdir -p packages
-cd .claude/skills
-zip -r ../../packages/gzhxz-visual-story.zip gzhxz-visual-story
+git clone https://github.com/lokih1028/lokih1028.git
+cd lokih1028
+bash install.sh --package-only
 ```
 
 正确 ZIP 结构应该是：
@@ -90,23 +112,58 @@ Customize > Skills > Upload
 
 ---
 
-## 常见问题
+## 方式五：手动复制
 
-### 为什么 GitHub 页面看不到这个目录？
-
-它在隐藏目录 `.claude/` 下面。直接访问路径即可：
-
-```text
-.claude/skills/gzhxz-visual-story/SKILL.md
+```bash
+git clone https://github.com/lokih1028/lokih1028.git
+cd lokih1028
+mkdir -p ~/.claude/skills
+cp -R skills/gzhxz-visual-story ~/.claude/skills/
 ```
 
-### 为什么下载 ZIP 后看不到 `.claude`？
+检查：
 
-文件管理器可能隐藏点开头目录。
+```bash
+ls -la ~/.claude/skills/gzhxz-visual-story
+```
+
+---
+
+## 路径说明
+
+| 路径 | 用途 |
+|---|---|
+| `.claude-plugin/marketplace.json` | Claude Code plugin marketplace 注册文件 |
+| `skills/gzhxz-visual-story/SKILL.md` | 规范 marketplace skill 路径 |
+| `.claude/skills/gzhxz-visual-story/SKILL.md` | 兼容旧版手动复制路径 |
+| `install.sh` | 本地安装和 ZIP 打包脚本 |
+| `packages/gzhxz-visual-story.zip` | 本地生成的 Claude.ai 上传包，不提交到 Git |
+
+---
+
+## 常见问题
+
+### 为什么以前看不到 `.claude`？
+
+`.claude` 是隐藏目录。文件管理器可能默认不显示点开头目录。
 
 macOS：按 `Cmd + Shift + .` 显示隐藏文件。
 
-终端：使用 `ls -la`。
+终端：使用：
+
+```bash
+ls -la
+```
+
+### 现在应该看哪个路径？
+
+优先看：
+
+```text
+skills/gzhxz-visual-story/SKILL.md
+```
+
+这是对外分发和 marketplace 安装的规范路径。
 
 ### 这个 Skill 是做什么的？
 
