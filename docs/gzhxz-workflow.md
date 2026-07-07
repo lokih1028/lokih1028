@@ -2,9 +2,9 @@
 
 > 目标：把 AI/科技领域的一手信号，变成编辑能直接使用的图文证据稿。
 
-这个文档是 `.claude/skills/gzhxz-visual-story/SKILL.md` 的人类可读版。
+这个文档是 `skills/gzhxz-visual-story/SKILL.md` 的人类可读版。
 
-Skill 文件负责让 Claude 执行；这个文档负责让人一眼看懂流程。
+Skill 文件负责让 Agent 执行；这个文档负责让人一眼看懂流程。
 
 ---
 
