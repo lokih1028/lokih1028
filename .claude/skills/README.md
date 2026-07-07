@@ -1,47 +1,57 @@
 # Claude Skills
 
-这里存放这个仓库的 Claude Skills。
+This directory is kept for direct Claude Code copying and backward compatibility.
 
-当前重点不是“收集很多技能”，而是把一个真实可用的 AI/科技内容工作流打磨清楚：
+The marketplace-facing canonical path is now:
 
-**从一手信源发现 → 选题判断 → 事实核验 → 视觉叙事 → 公众号图文交付。**
+```text
+skills/gzhxz-visual-story/SKILL.md
+```
 
----
-
-## Available Skills
-
-| Skill | 用途 | 状态 |
-|---|---|---|
-| `gzhxz-visual-story` | AI/科技公众号视觉叙述创作工作流：选题、信源、配图、初稿、审核、交付 | Active |
-
----
-
-## gzhxz-visual-story
-
-路径：
+The compatible direct-copy path remains:
 
 ```text
 .claude/skills/gzhxz-visual-story/SKILL.md
 ```
 
-适用场景：
+## Available Skills
 
-- 从一个 AI/科技链接生成公众号图文证据稿
-- 从 GitHub 项目拆解可写角度
-- 从论文、产品发布、官方公告里提炼选题
-- 先做 3–5 个候选选题，再锁定一个继续写
-- 给编辑提供“为什么值得写 / 怎么写 / 哪些不能写死”的前置判断
+| Skill | Purpose | Status |
+|---|---|---|
+| `gzhxz-visual-story` | AI/tech WeChat visual narrative workflow: topic discovery, source verification, visual storyboard, Chinese draft, review, and delivery | Active |
 
----
+## Recommended Installation
 
-## 推荐触发方式
+Use the repository as a marketplace:
+
+```bash
+npx skills add lokih1028/lokih1028
+```
+
+Or in Claude Code:
 
 ```text
-使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
+/plugin marketplace add lokih1028/lokih1028
+/plugin install gzhxz-skills@gzhxz-skills
+```
+
+## Manual Copy
+
+```bash
+git clone https://github.com/lokih1028/lokih1028.git
+cd lokih1028
+mkdir -p ~/.claude/skills
+cp -R skills/gzhxz-visual-story ~/.claude/skills/
+```
+
+## Trigger Examples
+
+```text
+/gzhxz-visual-story
 ```
 
 ```text
-帮我把这个链接写成公众号文章，要有配图和信源截图：<url>
+使用 gzhxz 公众号视觉叙述创作工作流 V6.8.0
 ```
 
 ```text
@@ -52,28 +62,25 @@
 今天跑一下公众号选题 SOP，先选题，再写成视觉叙述文章。
 ```
 
----
+## Core Principles
 
-## Skill 的基本原则
+1. **First-hand sources first**  
+   Official announcements, docs, changelogs, GitHub, arXiv, Product Hunt, Hacker News, and maintainer/researcher posts are preferred.
 
-1. **一手信源优先**  
-   官方公告、Docs、Changelog、GitHub、arXiv、Product Hunt、Hacker News、维护者/研究者公开信息优先。
+2. **Freshness gate before writing**  
+   S-level topics require recent first-hand movement. Old topics need a real revival reason.
 
-2. **新鲜度先过门槛**  
-   S 级选题必须有近期一手更新；旧题不能硬装新。
+3. **Separate facts from heat**  
+   Secondary media and social spread can prove attention, not core facts.
 
-3. **事实和热度分开**  
-   二手媒体、社媒传播可以证明热度，但不能替代事实源。
+4. **Visuals are evidence, not decoration**  
+   Every image should prove a fact, explain a mechanism, create contrast, or move the story forward.
 
-4. **视觉不是装饰**  
-   每张图都要证明事实、解释机制、制造对比或推动叙事。
-
-5. **交付给编辑可直接用**  
-   输出不仅是文章，还包括信源、风险、图表规划和可复用结构。
-
----
+5. **Editor-ready delivery**  
+   Output should include sources, risks, visual plan, article structure, and reusable Markdown.
 
 ## Related Docs
 
-- `docs/gzhxz-workflow.md` — 人类可读版流程说明
-- `templates/article-package.md` — 公众号图文证据稿交付模板
+- `docs/install.md` — install and packaging guide
+- `docs/gzhxz-workflow.md` — human-readable workflow overview
+- `templates/article-package.md` — reusable article package template
