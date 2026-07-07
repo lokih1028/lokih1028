@@ -1,6 +1,6 @@
 ---
 name: gzhxz-visual-story
-description: Use for gzhxz WeChat public-account visual narrative article workflow: topic discovery, source verification, visual storyboard, Chinese draft, review, and delivery.
+description: "Use for gzhxz WeChat public-account visual narrative article workflow: topic discovery, source verification, visual storyboard, Chinese draft, review, and delivery."
 ---
 
 # gzhxz 公众号视觉叙述创作工作流 V6.8.0
