@@ -1,28 +1,22 @@
 # Packages
 
-这里放 `gzhxz-visual-story` 的本地打包说明。
+This directory is for locally generated Skill ZIP packages.
 
-因为 GitHub API 写入二进制 ZIP 不如本地 `zip` 命令稳定，仓库默认保留源码结构；你可以一条命令在本地生成 Claude.ai 可上传的 Skill 包：
+Generated archives are intentionally ignored by Git. The repository keeps source files; users generate uploadable packages locally.
+
+## Generate Claude.ai ZIP
 
 ```bash
-bash install.sh
+bash install.sh --package-only
 ```
 
-脚本会同时完成两件事：
-
-1. 安装到 Claude Code 个人 Skill 目录：
-
-```text
-~/.claude/skills/gzhxz-visual-story/
-```
-
-2. 如果本机有 `zip` 命令，生成：
+If `zip` is available, this creates:
 
 ```text
 packages/gzhxz-visual-story.zip
 ```
 
-正确 ZIP 结构：
+Correct ZIP structure:
 
 ```text
 gzhxz-visual-story.zip
@@ -30,12 +24,42 @@ gzhxz-visual-story.zip
     └── SKILL.md
 ```
 
-如果只想手动打包：
+Upload it in Claude.ai:
 
-```bash
-mkdir -p packages
-cd .claude/skills
-zip -r ../../packages/gzhxz-visual-story.zip gzhxz-visual-story
+```text
+Customize > Skills > Upload
 ```
 
-然后到 Claude.ai 的 `Customize > Skills` 上传这个 ZIP。
+## Install and package together
+
+```bash
+bash install.sh
+```
+
+This does two things:
+
+1. Installs the skill to:
+
+```text
+~/.claude/skills/gzhxz-visual-story/
+```
+
+2. Generates the ZIP package when `zip` exists:
+
+```text
+packages/gzhxz-visual-story.zip
+```
+
+## Source path
+
+The canonical source path is:
+
+```text
+skills/gzhxz-visual-story/SKILL.md
+```
+
+The legacy direct-copy path is kept for compatibility:
+
+```text
+.claude/skills/gzhxz-visual-story/SKILL.md
+```
